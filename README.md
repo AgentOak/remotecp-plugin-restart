@@ -30,6 +30,7 @@ The plugin needs a script that handles the actual operations (start, stop, resta
 It must adhere to the [LSB 5.0 Chapter 22.2](http://refspecs.linuxfoundation.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html). That way, if you already have conforming init scripts for the services, you can pass their exit codes and output through. Output of the script will be shown in the webinterface only in case of an error (that is, exit code ≠ 0).
 
 A proposal of this script for Linux systems is included (`userrestart.sh`). It relies on the `sudo` and `service` commands and has been tested on Debian 8, but should work on any system offering these two commands. If you intend to use it you have to do the following steps to make it work:
+
 1. Copy the script to a suitable location, for example `/usr/local/bin/` (this is the expected default)
 2. Make sure the mode of the file allows execution
 3. Create the group `userrestart`
