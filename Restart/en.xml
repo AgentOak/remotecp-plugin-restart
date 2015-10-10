@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translation>
+	<plugin>
+		<errnoservices>No services configured</errnoservices>
+		<errunknownservice>Unknown service</errunknownservice>
+		<errinvalidop>Invalid operation</errinvalidop>
+		<errnoexec>Function exec() doesn't exist. Is it in disable_functions?</errnoexec>
+
+		<statusrunning>Running</statusrunning>
+		<statuscrashed>Crashed</statuscrashed>
+		<statusstopped>Stopped</statusstopped>
+		<statusunknown>Unknown</statusunknown>
+
+		<status>Status</status>
+		<action>Action</action>
+
+		<actionstart>Start</actionstart>
+		<actionrestart>Restart</actionrestart>
+		<actionstop>Stop</actionstop>
+
+		<actionsuccess>Action successful</actionsuccess>
+		<actionfailure>Action failed</actionfailure>
+	</plugin>
+	<help>
+		<category title="General">
+			<item title="">
+				This plugin lets you restart services on your system. Useful for the TrackMania Server and the Ingame-Controller.
+			</item>
+		</category>
+	</help>
+</translation>

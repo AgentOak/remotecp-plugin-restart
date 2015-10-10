@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translation>
+	<plugin>
+		<errnoservices>Keine Dienste konfiguriert</errnoservices>
+		<errunknownservice>Unbekannter Dienst</errunknownservice>
+		<errinvalidop>Ungültige Operation</errinvalidop>
+		<errnoexec>Funktion exec() nicht verfügbar. Ist sie in disable_functions?</errnoexec>
+
+		<statusrunning>Läuft</statusrunning>
+		<statuscrashed>Abgestürzt</statuscrashed>
+		<statusstopped>Gestoppt</statusstopped>
+		<statusunknown>Unbekannt</statusunknown>
+
+		<status>Status</status>
+		<action>Aktion</action>
+
+		<actionstart>Starten</actionstart>
+		<actionrestart>Neustarten</actionrestart>
+		<actionstop>Stoppen</actionstop>
+
+		<actionsuccess>Aktion erfolgreich</actionsuccess>
+		<actionfailure>Aktion fehlgeschlagen</actionfailure>
+	</plugin>
+	<help>
+		<category title="General">
+			<item title="">
+				Mit diesem Plugin können beliebige Dienste auf dem System neugestartet werden. Nützlich für den TrackMania Server und den Ingame-Controller.
+			</item>
+		</category>
+	</help>
+</translation>
