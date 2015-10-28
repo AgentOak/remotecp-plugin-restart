@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <settings>
-	<!-- Filename (including Path if not in $PATH) of the script that handles the service operations -->
-	<!-- The script is called with the following parameters: $param $action -->
-	<!-- $param is the name of the service (services->service->param below) -->
-	<!-- $action is 'status', 'start', 'stop' or 'restart' -->
-	<!-- Exit codes must adhere to LSB 5.0 Chapter 22.2 -->
-	<script>/usr/local/bin/userrestart.sh</script>
-
 	<!-- Set up as many services as you like -->
 	<!-- <name> is shown in the Webinterface only -->
-	<!-- <param> is used as internal name and is given to the script -->
+	<!-- <command> is the command used to control the service -->
+	<!-- You can use the placeholder %a, it will be replaced with the action to execute (start, stop, restart, status) -->
+	<!-- If it is not specified, the action will be appended -->
+	<!-- The commands exit codes must adhere to the LSB 5.0 Chapter 22.2 -->
 	<services>
 		<service>
 			<name>TMF Server</name>
-			<param>tmfserver</param>
+			<command>sudo -n userrestart.sh tmfserver</command>
 		</service>
 		<service>
 			<name>RemoteCP Live</name>
-			<param>rcplive</param>
+			<command>sudo -n userrestart.sh rcplive</command>
 		</service>
 	</services>
 	<!-- Remember you can set up different settings.xml for each server using settings_<serverid>.xml filenames -->

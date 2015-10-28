@@ -8,14 +8,14 @@
 * @author Jan Erik Petersen
 * @copyright (c) 2015
 * @license GNU GPL v3.0
-* @version 1.0 (for 4.0.3.5)
+* @version 1.1 (for 4.0.3.5)
 */
 class Restart extends rcp_plugin
 {
 	public	$display		= 'side';
 	public	$title			= 'Restart';
 	public	$author			= 'Jan Erik Petersen';
-	public	$version		= '1.0';
+	public	$version		= '1.1';
 	public	$nservcon		= false;
 	public	$vpermissions	= array('offlinelogin');
 	public	$apermissions	= array(
@@ -23,7 +23,6 @@ class Restart extends rcp_plugin
 	);
 
 	// Configuration
-	private	$script			= null;
 	private	$services		= array();
 
 	// Request
@@ -32,10 +31,13 @@ class Restart extends rcp_plugin
 
 	public function onLoadSettings($settings)
 	{
-		$this->script	= (string) $settings->script;
+		$sid = 0;
 		foreach ($settings->services->service as $service)
 		{
-			$this->services[(string) $service->param]	= (string) $service->name;
+			if (strpos($service->command, "%a") === false) {
+				$service->command .= " %a";
+			}
+			$this->services[$sid++] = $service;
 		}
 	}
 
@@ -59,18 +61,18 @@ class Restart extends rcp_plugin
 			return;
 		}
 
-		foreach ($this->services as $param => $name)
+		foreach ($this->services as $param => $service)
 		{
 			$status = 255;
 			$ignored;
-			exec($this->script . " " . $param . " status", $ignored, $status);
+			exec(str_replace("%a", "status", $service->command), $ignored, $status);
 
 			echo "<form action='ajax.php' method='post' id='restart' name='restart' class='postcmd' rel='{$this->display}area'>";
 			echo "	<input type='hidden' name='plugin' value='{$this->id}' />";
 			echo "	<input type='hidden' name='service' value='{$param}' />";
 			echo "	<input type='hidden' name='action' value='fireAction' />";
 			echo "<fieldset>";
-			echo "<div class='legend'>{$name}</div>";
+			echo "<div class='legend'>" . htmlspecialchars($service->name) . "</div>";
 			echo "  <div class='f-row'>
 						<label>".pt_status."</label>
 						<div class='f-field'>";
@@ -126,7 +128,7 @@ class Restart extends rcp_plugin
 
 		$returnval = 255;
 		$output = array();
-		exec($this->script . " " . $this->service . " " . $this->op . " 2>&1", $output, $returnval);
+		exec(str_replace("%a", $this->op, $this->services[$this->service]->command) . " 2>&1", $output, $returnval);
 
 		if ($returnval === 0)
 		{
